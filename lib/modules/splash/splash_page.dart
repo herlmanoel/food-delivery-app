@@ -1,18 +1,24 @@
+import 'package:ecommercefood/modules/home/HomePage.dart';
+import 'package:ecommercefood/modules/splash/gradient.dart';
+import 'package:flutter/material.dart';
+
 import 'package:ecommercefood/modules/splash/button.dart';
 import 'package:ecommercefood/shared/themes/app_colors.dart';
 import 'package:ecommercefood/shared/themes/app_image.dart';
 import 'package:ecommercefood/shared/themes/app_text_style.dart';
-import 'package:flutter/material.dart';
 
 class SplashPage extends StatelessWidget {
   // const SplashPage({Key? key}) : super(key: key);
+  toLogin(context) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));   
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    
     return Scaffold(
       backgroundColor: AppColors.background,
-
       body: Container(
         width:  size.width,
         height: size.height,
@@ -27,20 +33,8 @@ class SplashPage extends StatelessWidget {
                   image: AssetImage(AppImages.introFood),
                 ),
               ),
-              child: null,
               ),
-              Container(
-                  decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      const Color(0xFFC4C4C4).withOpacity(0),
-                      const Color(0x00000000).withOpacity(0.7),
-                    ],
-                  )
-                ),
-              ),
+              const GradientSplash(),
               Positioned(
                 top: size.width * 0.8,
                 child: Padding(
@@ -68,6 +62,7 @@ class SplashPage extends StatelessWidget {
                                 child: ButtonSplash(
                                   onTap: () {
                                     print("CLick");
+                                    toLogin(context);
                                   },
                                 ),
                               ),
