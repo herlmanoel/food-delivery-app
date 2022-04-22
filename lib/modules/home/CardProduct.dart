@@ -1,3 +1,4 @@
+import 'package:ecommercefood/modules/home/ProductPage.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class _CardProductState extends State<CardProduct> {
           Row(
             children: [
               const Icon(Icons.star_rate, color: Colors.yellow,),
-              Text("${product.starts}", style: TextStyle(fontSize: 16),),
+              Text("${product.starts}", style: const TextStyle(fontSize: 16),),
             ],
           ),
           const SizedBox(height: 10),
@@ -69,7 +70,7 @@ class _CardProductState extends State<CardProduct> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children:  [
               Text("R\$ ${product.price}", 
-              style: TextStyle(fontSize: 18, 
+              style: const TextStyle(fontSize: 18, 
               fontWeight: FontWeight.bold, color: AppColors.backgroundSplash),),
               Container(
                 width: 35,
@@ -85,7 +86,12 @@ class _CardProductState extends State<CardProduct> {
                     color: Colors.white,
                     size: 20,
                   ), 
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProductPage(product: product)),
+                    );
+                  },
                 ),
               )
             ],

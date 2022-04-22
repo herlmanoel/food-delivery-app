@@ -8,4 +8,5 @@ class AppImages {
   static const hotDogIcon = 'assets/images/hotDogIcon.png';
   static const filterIcon = 'assets/images/filterIcon.png';
   static const burguerProduct = 'assets/images/burguerProduct.png';
+  static const burguerProduct2 = 'assets/images/burguerProduct2x.png';
 }

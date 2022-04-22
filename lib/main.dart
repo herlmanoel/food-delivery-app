@@ -1,4 +1,5 @@
 import 'package:ecommercefood/modules/home/HomePage.dart';
+import 'package:ecommercefood/modules/home/ProductPage.dart';
 import 'package:ecommercefood/modules/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
