@@ -9,4 +9,6 @@ class AppImages {
   static const filterIcon = 'assets/images/filterIcon.png';
   static const burguerProduct = 'assets/images/burguerProduct.png';
   static const burguerProduct2 = 'assets/images/burguerProduct2x.png';
+  static const google = 'assets/images/google.png';
+  static const entregador = 'assets/images/entregador.png';
 }

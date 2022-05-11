@@ -1,10 +1,10 @@
+import 'package:ecommercefood/data/database.dart';
 import 'package:ecommercefood/modules/home/CardProduct.dart';
 import 'package:ecommercefood/modules/home/categories_menu.dart';
 import 'package:ecommercefood/modules/home/products_list.dart';
 import 'package:ecommercefood/modules/home/search.dart';
 import 'package:ecommercefood/modules/models/Category.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
-import 'package:ecommercefood/shared/themes/app_colors.dart';
 import 'package:ecommercefood/shared/themes/app_image.dart';
 import 'package:flutter/material.dart';
 
@@ -16,83 +16,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var listCategories = [
-    Category(
-        id: 1,
-        title: 'Sandwich',
-        icon: Image.asset(AppImages.hotDogIcon),
-        selected: true),
-    Category(id: 2, title: 'Pizza', icon: Image.asset(AppImages.pizzaIcon)),
-    Category(id: 3, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon)),
-  ];
-
-  List<Product> listProductsData = [
-    Product(
-        id: 1,
-        name: 'Chicken burger',
-        description: "200 gr chicken + cheese  Lettuce + tomato",
-        image: Image.asset(AppImages.burguerProduct),
-        price: 20,
-        category: Category(
-            id: 1, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon))),
-    Product(
-        id: 2,
-        name: 'Chicken burger',
-        description: "200 gr chicken + cheese  Lettuce + tomato",
-        image: Image.asset(AppImages.burguerProduct),
-        price: 30,
-        category: Category(
-            id: 1, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon))),
-    Product(
-        id: 3,
-        name: 'Chicken burger',
-        description: "200 gr chicken + cheese  Lettuce + tomato",
-        image: Image.asset(AppImages.burguerProduct),
-        price: 40,
-        category: Category(
-            id: 1, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon))),
-    Product(
-        id: 4,
-        name: 'Chicken burger',
-        description: "200 gr chicken + cheese  Lettuce + tomato",
-        image: Image.asset(AppImages.burguerProduct),
-        price: 50,
-        category: Category(
-            id: 1, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon))),
-    Product(
-        id: 5,
-        name: 'Chicken burger',
-        description: "200 gr chicken + cheese  Lettuce + tomato",
-        image: Image.asset(AppImages.burguerProduct),
-        price: 60,
-        category: Category(
-            id: 1, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon))),
-    Product(
-        id: 6,
-        name: 'Chicken burger',
-        description: "200 gr chicken + cheese  Lettuce + tomato",
-        image: Image.asset(AppImages.burguerProduct),
-        price: 70,
-        category: Category(
-            id: 1, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon))),
-    Product(
-        id: 7,
-        name: 'Chicken burger',
-        description: "200 gr chicken + cheese  Lettuce + tomato",
-        image: Image.asset(AppImages.burguerProduct),
-        price: 80,
-        category: Category(
-            id: 1, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon))),
-  ];
-
   List<Product> listProducts = [];
+  List<Category> listCategories = [];
 
   int idSelectedCategory = 1;
-  
+
   List<Product> filterProducts(int idCategory) {
-    return listProductsData
+    return DatabaseProducts.listProductsData
         .where((product) => product.category.id == idCategory)
         .toList();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    listCategories = DatabaseProducts.listCategories;
+    listProducts = filterProducts(idSelectedCategory);
   }
 
   @override
@@ -112,14 +51,16 @@ class _HomePageState extends State<HomePage> {
                 const Text(
                   'Order Your Food\nFast and Free',
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Image.asset(AppImages.delivery),
+                Transform.scale(
+                  scale: 0.8,
+                  child: Image.asset(AppImages.delivery)),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Search(size: size),
             const SizedBox(height: 20),
             SizedBox(
@@ -151,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
-            const SizedBox(height: 20),
+            // const SizedBox(height: 5),
             Expanded(
               child: listProducts.isNotEmpty
                   ? ProductsList(
@@ -185,5 +126,3 @@ class _HomePageState extends State<HomePage> {
     idSelectedCategory = id;
   }
 }
-
-

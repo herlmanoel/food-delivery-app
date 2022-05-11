@@ -23,28 +23,31 @@ class CategoriesMenu extends StatelessWidget {
     var selected = category.selected;
     var id = category.id;
     
-    return Container(
-      margin: const EdgeInsets.only(right: 10),
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(
-        color: selected ? AppColors.backgroundSplash : Colors.transparent,
-        border: Border.all(color: AppColors.backgroundSplash),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: TextButton.icon(
-        onPressed: () {
-          setState(() {
-            updateCategorySelected(id);
-            setIdSelectCategory(id);
-          });
-        },
-        icon: icon,
-        label: Text(
-          title,
-          style: TextStyle(
-              fontSize: 18,
-              color: selected ? Colors.white : Colors.black,
-              fontWeight: FontWeight.bold),
+    return Transform.scale(
+      scale: 0.9,
+      child: Container(
+        margin: const EdgeInsets.only(right: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: selected ? AppColors.backgroundSplash : Colors.transparent,
+          border: Border.all(color: AppColors.backgroundSplash),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: TextButton.icon(
+          onPressed: () {
+            setState(() {
+              updateCategorySelected(id);
+              setIdSelectCategory(id);
+            });
+          },
+          icon: icon,
+          label: Text(
+            title,
+            style: TextStyle(
+                fontSize: 18,
+                color: selected ? Colors.white : Colors.black,
+                fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     );

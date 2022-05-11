@@ -12,6 +12,7 @@ class Product {
   int amountReviews;
   bool isFavorite;
   Category category;
+  int quantity = 0;
   Product({
     required this.id,
     this.starts = 0.0,
@@ -25,10 +26,23 @@ class Product {
   });
 
   String getPriceFormat() {
-    return 'R\$${price.toStringAsFixed(2)}';
+    if(quantity <= 0) {
+      return 'R\$ ${price.toStringAsFixed(2)}';
+    } 
+    return 'R\$ ${(price * quantity).toStringAsFixed(2)}';
+    
   }
 
   String getAmountReviewsFormat() {
     return '($amountReviews ${amountReviews == 1 ? 'review' : 'reviews'})';
+  }
+
+  incrementQuantity() {
+    quantity = quantity++;
+  }
+
+  decrementQuantity() {
+    if(quantity <= 0) return;
+    quantity = quantity++;
   }
 }

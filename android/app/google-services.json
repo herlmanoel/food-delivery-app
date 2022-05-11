@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "247587947382",
+    "project_id": "ecommercefood-f80c4",
+    "storage_bucket": "ecommercefood-f80c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247587947382:android:bb15f6e987742773a07057",
+        "android_client_info": {
+          "package_name": "com.example.ecommercefood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247587947382-jhdbs70gf4jer8qhtql7f42hft90npcq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ecommercefood",
+            "certificate_hash": "04b1c6a3f1e2046b0decb868b42549968e7fb9b5"
+          }
+        },
+        {
+          "client_id": "247587947382-5r22nu0jn8lgmoh9c83rkild5eae11br.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZwP8b9kXvIZ5UKi2pbSxgymiOCkPrvQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247587947382-5r22nu0jn8lgmoh9c83rkild5eae11br.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

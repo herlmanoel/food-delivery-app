@@ -1,4 +1,3 @@
-import 'package:ecommercefood/modules/home/HomePage.dart';
 import 'package:ecommercefood/modules/splash/gradient.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +9,7 @@ import 'package:ecommercefood/shared/themes/app_text_style.dart';
 class SplashPage extends StatelessWidget {
   // const SplashPage({Key? key}) : super(key: key);
   toLogin(context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));   
+    Navigator.pushReplacementNamed(context, '/login');   
   }
 
   @override
@@ -61,7 +60,6 @@ class SplashPage extends StatelessWidget {
                               child: Center(
                                 child: ButtonSplash(
                                   onTap: () {
-                                    print("CLick");
                                     toLogin(context);
                                   },
                                 ),

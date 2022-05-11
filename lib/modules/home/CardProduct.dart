@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class CardProduct extends StatefulWidget {
   double widthFather;
   Product product;
-  CardProduct({ required this.widthFather, required this.product, Key? key });
+  CardProduct({required this.widthFather, required this.product, Key? key});
 
   @override
   State<CardProduct> createState() => _CardProductState(widthFather, product);
@@ -16,11 +16,10 @@ class _CardProductState extends State<CardProduct> {
   double widthFather;
   Product product;
   _CardProductState(this.widthFather, this.product);
-  
+
   @override
   Widget build(BuildContext context) {
     final double _large = ((widthFather - 40) / 2);
-    print(_large);
     return Container(
       padding: EdgeInsets.all(_large * 0.05),
       width: _large,
@@ -39,8 +38,14 @@ class _CardProductState extends State<CardProduct> {
         children: [
           Row(
             children: [
-              const Icon(Icons.star_rate, color: Colors.yellow,),
-              Text("${product.starts}", style: const TextStyle(fontSize: 16),),
+              const Icon(
+                Icons.star_rate,
+                color: Colors.yellow,
+              ),
+              Text(
+                "${product.starts}",
+                style: const TextStyle(fontSize: 16),
+              ),
             ],
           ),
           const SizedBox(height: 10),
@@ -48,30 +53,26 @@ class _CardProductState extends State<CardProduct> {
           product.image,
           const SizedBox(height: 10),
           SizedBox(
-            child: Text(
-              product.name, 
-              style: const TextStyle(
-                fontSize: 18, 
-                fontWeight: FontWeight.bold
-              )
-            )
-          ),
+              child: Text(product.name,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold))),
           const SizedBox(height: 10),
           SizedBox(
-            child: Text(
-              product.description, 
-              style: const TextStyle(
-                fontSize: 14,
-              )
-            )
-          ),
+              child: Text(product.description,
+                  style: const TextStyle(
+                    fontSize: 14,
+                  ))),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children:  [
-              Text("R\$ ${product.price}", 
-              style: const TextStyle(fontSize: 18, 
-              fontWeight: FontWeight.bold, color: AppColors.backgroundSplash),),
+            children: [
+              Text(
+                product.getPriceFormat(),
+                style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.backgroundSplash),
+              ),
               Container(
                 width: 35,
                 height: 35,
@@ -82,14 +83,15 @@ class _CardProductState extends State<CardProduct> {
                 ),
                 child: IconButton(
                   icon: const Icon(
-                    Icons.add, 
+                    Icons.add,
                     color: Colors.white,
                     size: 20,
-                  ), 
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ProductPage(product: product)),
+                      MaterialPageRoute(
+                          builder: (context) => ProductPage(product: product)),
                     );
                   },
                 ),

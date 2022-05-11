@@ -1,3 +1,4 @@
+import 'package:ecommercefood/data/database.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/shared/themes/app_colors.dart';
 import 'package:ecommercefood/shared/themes/app_image.dart';
@@ -13,6 +14,7 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   // ProductPage({ Key? key });
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -42,6 +44,7 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   Column createColumn(Size size, var context, Product product) {
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -51,7 +54,8 @@ class _ProductPageState extends State<ProductPage> {
             IconButton(
               icon: const Icon(Icons.arrow_back_ios),
               onPressed: () {
-                Navigator.pop(context);
+                DatabaseProducts.putProduct(product);
+                Navigator.pushReplacementNamed(context, '/home').then((_) => setState(() {}));
               },
             ),
             IconButton(
@@ -137,15 +141,20 @@ class _ProductPageState extends State<ProductPage> {
                         color: Colors.white,
                         size: 20,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          if(product.quantity <= 0) return;
+                          product.quantity = product.quantity - 1;
+                        });
+                      },
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 35,
                     child: Center(
                       child: Text(
-                        '1',
-                        style: TextStyle(
+                        product.quantity.toString(),
+                        style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
@@ -166,7 +175,11 @@ class _ProductPageState extends State<ProductPage> {
                         color: Colors.white,
                         size: 20,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          product.quantity = product.quantity + 1;
+                        });
+                      },
                     ),
                   )
                 ],
