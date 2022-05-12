@@ -15,9 +15,15 @@ class ModalCart extends StatefulWidget implements PreferredSizeWidget {
 class _CartModalState extends State<ModalCart>{
   List<Product> listProducts = [];
 
-  List<Product> filterProducts(int idCategory) {
+  List<Product> products() {
     return DatabaseProducts.listProductsData
     .toList();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    listProducts = products();
   }
 
   @override
@@ -25,6 +31,7 @@ class _CartModalState extends State<ModalCart>{
     final size = MediaQuery.of(context).size;
     const paddingSafeArea = 20.0;
     final widthSafeArea = size.width - (paddingSafeArea * 2);
+    listProducts = products();
     return Expanded(child: Container(
       color: AppColors.stroke,
       child: Column(
@@ -40,12 +47,14 @@ class _CartModalState extends State<ModalCart>{
                 ),
               ],
             ),
-            Center(child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: listProducts.length,
-              itemBuilder: (context, i) => 
-                CardCart(widthFather: widthSafeArea, product: listProducts[i])
-              )
+            Expanded(child: listProducts.isNotEmpty
+                ? ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, i) =>
+                      CardCart(widthFather: widthSafeArea, product: listProducts[i]),
+                    itemCount: listProducts.length,
+                  )
+                : Container(),
             )
           ],
         ),

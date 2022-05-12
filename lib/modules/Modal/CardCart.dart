@@ -1,4 +1,3 @@
-import 'package:ecommercefood/modules/home/ProductPage.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +21,7 @@ class _CardCartState extends State<CardCart> {
     final double _large = ((widthFather - 40) / 2);
     return Container(
         padding: EdgeInsets.all(_large * 0.05),
+        margin: EdgeInsets.all(_large * 0.05),
         width: _large,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -39,18 +39,13 @@ class _CardCartState extends State<CardCart> {
             children: <Widget>[
               // Image.asset(AppImages.burguerProduct),
               product.image,
-              const SizedBox(height: 10),
+              const SizedBox(width: 10),
               SizedBox(
                   child: Text(product.name,
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.bold))),
-              SizedBox(
-                  child: Text(product.description,
-                      style: const TextStyle(
-                        fontSize: 14,
-                      ))),
-    
-              Row(
+              const SizedBox(width: 10),
+              Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -60,6 +55,68 @@ class _CardCartState extends State<CardCart> {
                         fontWeight: FontWeight.bold,
                         color: AppColors.backgroundSplash),
                   ),
+                  Container(
+                    color: AppColors.foodBackground,
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 35,
+                          height: 35,
+                          // padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: AppColors.backgroundSplash,
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.remove,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                if (product.quantity <= 0) return;
+                                product.quantity = product.quantity - 1;
+                              });
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          width: 35,
+                          child: Center(
+                            child: Text(
+                              product.quantity.toString(),
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 35,
+                          height: 35,
+                          // padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: AppColors.backgroundSplash,
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                product.quantity = product.quantity + 1;
+                              });
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  )
                 ],
               ),
             ],

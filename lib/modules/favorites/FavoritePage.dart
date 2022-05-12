@@ -17,7 +17,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
   List<Product> products() {
     return DatabaseProducts.listProductsData
-        .toList();
+      .where((product) => product.isFavorite == true)
+      .toList();
   }
 
   @override
