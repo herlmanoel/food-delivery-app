@@ -1,4 +1,4 @@
-import 'package:ecommercefood/data/database.dart';
+import 'package:ecommercefood/modules/models/ShoppingCart.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import '../../shared/themes/app_colors.dart';
@@ -16,8 +16,7 @@ class _CartModalState extends State<ModalCart>{
   List<Product> listProducts = [];
 
   List<Product> products() {
-    return DatabaseProducts.listProductsData
-    .toList();
+    return ShoppingCart.getProducts();
   }
 
   @override

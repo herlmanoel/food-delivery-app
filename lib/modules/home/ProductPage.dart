@@ -1,6 +1,6 @@
-import 'package:ecommercefood/data/database.dart';
 import 'package:ecommercefood/modules/NavBar/NavBar.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
+import 'package:ecommercefood/modules/models/ShoppingCart.dart';
 import 'package:ecommercefood/shared/themes/app_colors.dart';
 import 'package:ecommercefood/shared/themes/app_image.dart';
 import 'package:flutter/material.dart';
@@ -190,7 +190,10 @@ class _ProductPageState extends State<ProductPage> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  ShoppingCart.listIdsProducts.add(product.id);
+                  Navigator.pop(context);
+                },
                 child: const Center(
                   child: Text(
                     'Adicionar ao carrinho',
