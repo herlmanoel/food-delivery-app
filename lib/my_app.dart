@@ -1,3 +1,4 @@
+import 'package:ecommercefood/modules/favorites/FavoritePage.dart';
 import 'package:ecommercefood/modules/login/login_page.dart';
 import 'package:ecommercefood/modules/splash/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +19,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/home',
       routes: {
         '/splash': (context) => SplashPage(),
-        '/home': (context) => HomePage(),
+        '/home': (context) => const HomePage(),
         '/login': (context) => const LoginPage(),
+        '/favorites': (context) => const FavoritesPage(),
       },
     );
   }

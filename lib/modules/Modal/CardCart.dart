@@ -3,19 +3,19 @@ import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class CardProduct extends StatefulWidget {
+class CardCart extends StatefulWidget {
   double widthFather;
   Product product;
-  CardProduct({required this.widthFather, required this.product, Key? key});
+  CardCart({required this.widthFather, required this.product, Key? key});
 
   @override
-  State<CardProduct> createState() => _CardProductState(widthFather, product);
+  State<CardCart> createState() => _CardCartState(widthFather, product);
 }
 
-class _CardProductState extends State<CardProduct> {
+class _CardCartState extends State<CardCart> {
   double widthFather;
   Product product;
-  _CardProductState(this.widthFather, this.product);
+  _CardCartState(this.widthFather, this.product);
 
   @override
   Widget build(BuildContext context) {
@@ -35,21 +35,8 @@ class _CardProductState extends State<CardProduct> {
           ],
         ),
         child: Expanded(
-          child: Column(
+          child: Row(
             children: <Widget>[
-              Row(
-                children: [
-                  const Icon(
-                    Icons.star_rate,
-                    color: Colors.yellow,
-                  ),
-                  Text(
-                    "${product.starts}",
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
               // Image.asset(AppImages.burguerProduct),
               product.image,
               const SizedBox(height: 10),
@@ -73,30 +60,6 @@ class _CardProductState extends State<CardProduct> {
                         fontWeight: FontWeight.bold,
                         color: AppColors.backgroundSplash),
                   ),
-                  Container(
-                    width: 35,
-                    height: 35,
-                    // padding: const EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                      color: AppColors.backgroundSplash,
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.add,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  ProductPage(product: product)),
-                        );
-                      },
-                    ),
-                  )
                 ],
               ),
             ],

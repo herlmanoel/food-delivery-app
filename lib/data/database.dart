@@ -78,4 +78,9 @@ class DatabaseProducts {
     int indexProduct = listProductsData.indexWhere((element) => element.id == product.id);
     listProductsData[indexProduct] = product;
   }
+
+  static getFavoriteProducts() {
+    return listProductsData.where((element) => element.isFavorite).toList();
+  }
+
 }

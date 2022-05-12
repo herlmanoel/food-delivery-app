@@ -1,8 +1,8 @@
 import 'package:ecommercefood/data/database.dart';
+import 'package:ecommercefood/modules/NavBar/NavBar.dart';
 import 'package:ecommercefood/modules/home/CardProduct.dart';
 import 'package:ecommercefood/modules/home/categories_menu.dart';
 import 'package:ecommercefood/modules/home/products_list.dart';
-import 'package:ecommercefood/modules/home/search.dart';
 import 'package:ecommercefood/modules/models/Category.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/shared/themes/app_image.dart';
@@ -41,6 +41,7 @@ class _HomePageState extends State<HomePage> {
     final widthSafeArea = size.width - (paddingSafeArea * 2);
     listProducts = filterProducts(idSelectedCategory);
     return Scaffold(
+      appBar: const NavBar(),
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: paddingSafeArea),
@@ -60,21 +61,6 @@ class _HomePageState extends State<HomePage> {
                   child: Image.asset(AppImages.delivery)),
               ],
             ),
-            const SizedBox(height: 10),
-            Search(size: size),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: widthSafeArea,
-              child: const Text(
-                "Categories",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const SizedBox(height: 18),
             SizedBox(
               height: 50,
               child: ListView.builder(

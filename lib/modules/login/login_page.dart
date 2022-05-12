@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
-
+  toHome(context) {
+    Navigator.pushReplacementNamed(context, '/home');   
+  }
   @override
   Widget build(BuildContext context) {
     final loginController = LoginController();
@@ -28,7 +30,7 @@ class LoginPage extends StatelessWidget {
                       child: Image.asset(AppImages.entregador)
                     ),
                   ),
-                  const GradientLoginImage(),
+                  // const GradientLoginImage(),
                 ],
               ),
               const SizedBox(height: 20),
@@ -52,6 +54,7 @@ class LoginPage extends StatelessWidget {
               ),
               SizedBox(height: height * 0.1,),
               SocialLoginButton(onTap: () => loginController.googlesignin(context)),
+              ButtonSkip(onTap: () {toHome(context);},),
             ],
           ),
         ),
@@ -81,6 +84,40 @@ class GradientLoginImage extends StatelessWidget {
               const Color(0xFFFFFFFF).withOpacity(1),
             ],
           )
+        ),
+      ),
+    );
+  }
+}
+
+class ButtonSkip extends StatelessWidget {
+  final VoidCallback onTap;
+  const ButtonSkip({Key? key, required this.onTap}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 56,
+        width: size.width * 0.8,
+        decoration:  BoxDecoration(
+          color: AppColors.shape,
+          borderRadius: BorderRadius.circular(5),
+          border: const Border.fromBorderSide(BorderSide(color: AppColors.stroke))
+        ),
+        child: Row(children: [
+          Expanded(
+            flex: 4,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text('Entrar sem cadastro'),
+              ]
+            )),
+            Expanded(child: Container(),)
+        ],
         ),
       ),
     );

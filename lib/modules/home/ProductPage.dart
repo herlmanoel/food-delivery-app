@@ -1,4 +1,5 @@
 import 'package:ecommercefood/data/database.dart';
+import 'package:ecommercefood/modules/NavBar/NavBar.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/shared/themes/app_colors.dart';
 import 'package:ecommercefood/shared/themes/app_image.dart';
@@ -19,6 +20,7 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: const NavBar(),
       body: SingleChildScrollView(
         child: Container(
           color: Colors.white,
@@ -48,29 +50,6 @@ class _ProductPageState extends State<ProductPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.arrow_back_ios),
-              onPressed: () {
-                DatabaseProducts.putProduct(product);
-                Navigator.pushReplacementNamed(context, '/home').then((_) => setState(() {}));
-              },
-            ),
-            IconButton(
-              icon: Icon(
-                product.isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: product.isFavorite ? Colors.red : Colors.black,
-              ),
-              onPressed: () {
-                setState(() {
-                  product.isFavorite = !product.isFavorite;
-                });
-              },
-            ),
-          ],
-        ),
         const SizedBox(height: 20),
         Container(
             width: size.width,
@@ -91,22 +70,17 @@ class _ProductPageState extends State<ProductPage> {
             ),
             Row(
               children: [
-                const Icon(
-                  Icons.star_rate,
-                  color: Colors.yellow,
+                IconButton(
+                  icon: Icon(
+                    product.isFavorite ? Icons.favorite : Icons.favorite_border,
+                    color: product.isFavorite ? AppColors.backgroundSplash : Colors.black,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      product.isFavorite = !product.isFavorite;
+                    });
+                  },
                 ),
-                Row(
-                  children: [
-                    Text(
-                      product.starts.toString(),
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                    Text(
-                      product.getAmountReviewsFormat(),
-                      style: const TextStyle(fontSize: 15),
-                    ),
-                  ],
-                )
               ],
             ),
           ],
