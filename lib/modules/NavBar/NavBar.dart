@@ -1,12 +1,17 @@
 import 'package:ecommercefood/modules/Modal/ModalCart.dart';
+import 'package:ecommercefood/modules/favorites/FavoritePage.dart';
 import 'package:flutter/material.dart';
 import '../../shared/themes/app_colors.dart';
 
-class NavBar extends StatelessWidget implements PreferredSizeWidget{
+class NavBar extends StatelessWidget implements PreferredSizeWidget {
   const NavBar({Key? key}) : super(key: key);
   toFavorites(context) {
-    Navigator.pushReplacementNamed(context, '/favorites');   
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const FavoritesPage()),
+    );
   }
+
   @override
   Size get preferredSize => const Size.fromHeight(50);
   @override
@@ -17,7 +22,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget{
         IconButton(
           icon: const Icon(Icons.favorite),
           tooltip: 'Show Snackbar',
-          onPressed:() {
+          onPressed: () {
             toFavorites(context);
           },
         ),
@@ -26,11 +31,10 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget{
           tooltip: 'Go to the next page',
           onPressed: () {
             showModalBottomSheet<void>(
-              context: context,
-              builder: (BuildContext context) {
-                return ModalCart();
-              }
-            );
+                context: context,
+                builder: (BuildContext context) {
+                  return const ModalCart();
+                });
           },
         ),
       ],
