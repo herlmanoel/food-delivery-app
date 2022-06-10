@@ -1,7 +1,7 @@
 import 'package:ecommercefood/modules/models/Category.dart';
 import 'package:flutter/material.dart';
 
-class Product {
+class Product with ChangeNotifier{
   int id;
   double starts;
   String name;
@@ -12,6 +12,7 @@ class Product {
   bool isFavorite;
   Category category;
   int quantity = 0;
+
   Product({
     required this.id,
     this.starts = 0.0,
@@ -37,11 +38,13 @@ class Product {
   }
 
   incrementQuantity() {
-    quantity = quantity++;
+    quantity++;
+    notifyListeners();
   }
 
   decrementQuantity() {
     if(quantity <= 0) return;
-    quantity = quantity++;
+    quantity--;
+    notifyListeners();
   }
 }
