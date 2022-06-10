@@ -19,12 +19,16 @@ class ShoppingCart extends ChangeNotifier {
     return listIdsProducts.length;
   }
 
-  static List<Product> getProducts() {
+  List<Product> getProductsShopping() {
     return DatabaseProducts.listProductsData
         .where(
           (product) => listIdsProducts.contains(product.id),
         )
         .toList();
+  }
+
+  List<Product> getProducts() {
+    return DatabaseProducts.listProductsData;
   }
 
   // double get total {
