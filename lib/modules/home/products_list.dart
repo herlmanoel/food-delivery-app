@@ -1,5 +1,5 @@
+import 'package:ecommercefood/modules/controller/state_controller.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
-import 'package:ecommercefood/modules/models/ShoppingCart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,9 +8,9 @@ import 'CardProduct.dart';
 class ProductsList extends StatelessWidget {
   double paddingSafeArea;
   double widthSafeArea;
-  List<Product> listProducts;
+  List<Product>? listProducts;
   ProductsList(
-      {required this.listProducts,
+      {this.listProducts,
       required this.paddingSafeArea,
       required this.widthSafeArea,
       Key? key})
@@ -18,8 +18,8 @@ class ProductsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ShoppingCart>(context);
-    final products = provider.getProducts();
+    final provider = Provider.of<StateController>(context);
+    final products = listProducts ?? provider.getProducts();
     
     return GridView.builder(
       padding: EdgeInsets.symmetric(vertical: paddingSafeArea),
@@ -32,7 +32,7 @@ class ProductsList extends StatelessWidget {
       itemBuilder: (context, i) => ChangeNotifierProvider.value(
         value: products[i],
         child:
-            CardProduct(widthFather: widthSafeArea, product: listProducts[i]),
+            CardProduct(widthFather: widthSafeArea, product: products[i]),
       ),
       itemCount: products.length,
     );

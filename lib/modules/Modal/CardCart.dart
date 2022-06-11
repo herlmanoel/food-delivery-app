@@ -1,3 +1,4 @@
+import 'package:ecommercefood/modules/controller/state_controller.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,8 @@ import 'package:flutter/material.dart';
 class CardCart extends StatefulWidget {
   double widthFather;
   Product product;
-  CardCart({required this.widthFather, required this.product, Key? key});
+  StateController provider;
+  CardCart({ required this.provider, required this.widthFather, required this.product, Key? key});
 
   @override
   State<CardCart> createState() => _CardCartState(widthFather, product);
@@ -38,7 +40,10 @@ class _CardCartState extends State<CardCart> {
           child: Row(
             children: <Widget>[
               // Image.asset(AppImages.burguerProduct),
-              product.image,
+              Image.network(
+                product.imageUrl,
+                fit: BoxFit.cover,
+              ),
               const SizedBox(width: 10),
               SizedBox(
                   child: Text(product.name,
@@ -78,6 +83,7 @@ class _CardCartState extends State<CardCart> {
                                 if (product.quantity <= 0) return;
                                 product.quantity = product.quantity - 1;
                               });
+                              widget.provider.notifyListeners();
                             },
                           ),
                         ),
@@ -111,6 +117,7 @@ class _CardCartState extends State<CardCart> {
                               setState(() {
                                 product.quantity = product.quantity + 1;
                               });
+                              widget.provider.notifyListeners();
                             },
                           ),
                         )

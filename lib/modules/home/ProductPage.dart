@@ -2,7 +2,6 @@ import 'package:ecommercefood/modules/NavBar/NavBar.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/modules/models/ShoppingCart.dart';
 import 'package:ecommercefood/shared/themes/app_colors.dart';
-import 'package:ecommercefood/shared/themes/app_image.dart';
 import 'package:flutter/material.dart';
 
 class ProductPage extends StatefulWidget {
@@ -19,6 +18,7 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    
     return Scaffold(
       appBar: const NavBar(),
       body: SingleChildScrollView(
@@ -55,7 +55,11 @@ class _ProductPageState extends State<ProductPage> {
             width: size.width,
             height: 200,
             alignment: Alignment.center,
-            child: Image.asset(AppImages.burguerProduct2)),
+            child: Image.network(
+                product.imageUrl,
+                fit: BoxFit.cover,
+              ),
+        ),
         const SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -191,7 +195,8 @@ class _ProductPageState extends State<ProductPage> {
               ),
               child: TextButton(
                 onPressed: () {
-                  ShoppingCart.listIdsProducts.add(product.id);
+                  if(product.id == null) return;
+                  ShoppingCart.listIdsProducts.add(product.id as String);
                   Navigator.pop(context);
                 },
                 child: const Center(

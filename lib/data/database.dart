@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/shared/themes/app_image.dart';
 import 'package:flutter/material.dart';
@@ -17,59 +19,59 @@ class DatabaseProducts {
 
   static List<Product> listProductsData = [
     Product(
-        id: 1,
+        id: 'p1',
         name: 'Chicken burger',
         description: "200 gr chicken + cheese  Lettuce + tomato",
-        image: Image.asset(AppImages.burguerProduct),
         price: 20,
+        imageUrl: 'https://i.pinimg.com/originals/45/eb/98/45eb98c8637d591a1bde451eb1bce941.png',
         category: Category(
             id: 1, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon))),
     Product(
-        id: 2,
+        id: 'p2',
         name: 'Chicken burger',
         description: "200 gr chicken + cheese  Lettuce + tomato",
-        image: Image.asset(AppImages.burguerProduct),
         price: 30,
+        imageUrl: 'https://i.pinimg.com/originals/45/eb/98/45eb98c8637d591a1bde451eb1bce941.png',
         category: Category(
             id: 1, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon))),
     Product(
-        id: 3,
+        id: 'p3',
         name: 'Chicken burger',
         description: "200 gr chicken + cheese  Lettuce + tomato",
-        image: Image.asset(AppImages.burguerProduct),
         price: 40,
+        imageUrl: 'https://i.pinimg.com/originals/45/eb/98/45eb98c8637d591a1bde451eb1bce941.png',
         category: Category(
             id: 1, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon))),
     Product(
-        id: 4,
+        id: 'p4',
         name: 'Chicken burger',
         description: "200 gr chicken + cheese  Lettuce + tomato",
-        image: Image.asset(AppImages.burguerProduct),
         price: 50,
+        imageUrl: 'https://i.pinimg.com/originals/45/eb/98/45eb98c8637d591a1bde451eb1bce941.png',
         category: Category(
             id: 1, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon))),
     Product(
-        id: 5,
+        id: 'p5',
         name: 'Chicken burger',
         description: "200 gr chicken + cheese  Lettuce + tomato",
-        image: Image.asset(AppImages.burguerProduct),
         price: 60,
+        imageUrl: 'https://i.pinimg.com/originals/45/eb/98/45eb98c8637d591a1bde451eb1bce941.png',
         category: Category(
             id: 1, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon))),
     Product(
-        id: 6,
+        id: 'p6',
         name: 'Chicken burger',
         description: "200 gr chicken + cheese  Lettuce + tomato",
-        image: Image.asset(AppImages.burguerProduct),
         price: 70,
+        imageUrl: 'https://i.pinimg.com/originals/45/eb/98/45eb98c8637d591a1bde451eb1bce941.png',
         category: Category(
             id: 1, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon))),
     Product(
-        id: 7,
+        id: 'p7',
         name: 'Chicken burger',
         description: "200 gr chicken + cheese  Lettuce + tomato",
-        image: Image.asset(AppImages.burguerProduct),
         price: 80,
+        imageUrl: 'https://i.pinimg.com/originals/45/eb/98/45eb98c8637d591a1bde451eb1bce941.png',
         category: Category(
             id: 1, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon))),
   ];  

@@ -3,14 +3,14 @@ import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:flutter/cupertino.dart';
 
 class ShoppingCart extends ChangeNotifier {
-  static List<int> listIdsProducts = [];
+  static List<String> listIdsProducts = [];
 
-   void addItem(int id) {
+   void addItem(String id) {
     listIdsProducts.add(id);
     notifyListeners();
   }
 
-  void removeItem(int id) {
+  void removeItem(String id) {
     listIdsProducts.remove(id);
     notifyListeners();
   }
@@ -31,11 +31,11 @@ class ShoppingCart extends ChangeNotifier {
     return DatabaseProducts.listProductsData;
   }
 
-  // double get total {
-  //   double total = 0;
-  //   for (int id in listIdsProducts) {
-  //     total += ProductList().items.firstWhere((p) => p.id == id).price;
-  //   }
-  //   return total;
-  // }
+  double get total {
+    double total = 0;
+    for (String id in listIdsProducts) {
+      total += getProductsShopping().firstWhere((p) => p.id == id).getPrice();
+    }
+    return total;
+  }
 }

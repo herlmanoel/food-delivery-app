@@ -1,6 +1,8 @@
+import 'package:ecommercefood/modules/controller/state_controller.dart';
 import 'package:ecommercefood/my_app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(AppFirebase());
@@ -29,7 +31,10 @@ class _AppFirebaseState extends State<AppFirebase> {
               ),
             );
           } else if (snapshot.connectionState == ConnectionState.done) {
-            return const MyApp();
+            return ChangeNotifierProvider(
+              create: (context) => StateController(),
+              child: const MyApp(),
+            );
           } else {
             return const Material(
               child: Center(

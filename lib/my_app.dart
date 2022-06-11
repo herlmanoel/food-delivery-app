@@ -1,4 +1,5 @@
 import 'package:ecommercefood/modules/favorites/FavoritePage.dart';
+import 'package:ecommercefood/modules/form_product/form_product.dart';
 import 'package:ecommercefood/modules/login/login_page.dart';
 import 'package:ecommercefood/modules/splash/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/login': (context) => const LoginPage(),
         '/favorites': (context) => const FavoritesPage(),
+        '/form-product': (context) => FormProduct(),
       },
     );
   }

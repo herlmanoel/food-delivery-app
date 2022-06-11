@@ -8,12 +8,12 @@ class CategoriesMenu extends StatelessWidget {
   List<Category> listCategories;
   final Function(int id) setIdSelectCategory;
 
-  CategoriesMenu({
-    required this.category, 
-    required this.setState,
-    required this.setIdSelectCategory,
-    required this.listCategories,
-     Key? key})
+  CategoriesMenu(
+      {required this.category,
+      required this.setState,
+      required this.setIdSelectCategory,
+      required this.listCategories,
+      Key? key})
       : super(key: key);
 
   @override
@@ -22,7 +22,7 @@ class CategoriesMenu extends StatelessWidget {
     var title = category.title;
     var selected = category.selected;
     var id = category.id;
-    
+
     return Transform.scale(
       scale: 0.9,
       child: Container(

@@ -1,12 +1,15 @@
 import 'package:ecommercefood/data/database.dart';
 import 'package:ecommercefood/modules/NavBar/NavBar.dart';
+import 'package:ecommercefood/modules/controller/state_controller.dart';
 import 'package:ecommercefood/modules/home/CardProduct.dart';
+import 'package:ecommercefood/modules/home/botton_navigation_bar.dart';
 import 'package:ecommercefood/modules/home/categories_menu.dart';
 import 'package:ecommercefood/modules/home/products_list.dart';
 import 'package:ecommercefood/modules/models/Category.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/shared/themes/app_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,8 +24,9 @@ class _HomePageState extends State<HomePage> {
 
   int idSelectedCategory = 1;
 
-  List<Product> filterProducts(int idCategory) {
-    return DatabaseProducts.listProductsData
+  List<Product> filterProducts(int idCategory, BuildContext context) {
+    final provider = Provider.of<StateController>(context);
+    return provider.listProducts
         .where((product) => product.category.id == idCategory)
         .toList();
   }
@@ -31,7 +35,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     listCategories = DatabaseProducts.listCategories;
-    listProducts = filterProducts(idSelectedCategory);
   }
 
   @override
@@ -39,7 +42,7 @@ class _HomePageState extends State<HomePage> {
     final size = MediaQuery.of(context).size;
     const paddingSafeArea = 20.0;
     final widthSafeArea = size.width - (paddingSafeArea * 2);
-    listProducts = filterProducts(idSelectedCategory);
+    listProducts = filterProducts(idSelectedCategory, context);
     return Scaffold(
       appBar: const NavBar(),
       body: SafeArea(
@@ -84,12 +87,13 @@ class _HomePageState extends State<HomePage> {
                   ? ProductsList(
                       paddingSafeArea: paddingSafeArea,
                       widthSafeArea: widthSafeArea,
-                      listProducts: listProducts)
+                  )
                   : Container(),
             )
           ]),
         ),
       ),
+      bottomNavigationBar: MenuBar(),
     );
   }
 

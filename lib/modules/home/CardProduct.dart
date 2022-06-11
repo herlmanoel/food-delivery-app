@@ -51,18 +51,26 @@ class _CardProductState extends State<CardProduct> {
               ),
               const SizedBox(height: 10),
               // Image.asset(AppImages.burguerProduct),
-              product.image,
+              Image.network(
+                product.imageUrl,
+                fit: BoxFit.cover,
+              ),
               const SizedBox(height: 10),
               SizedBox(
-                  child: Text(product.name,
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold))),
+                child: Text(
+                  product.name,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
               SizedBox(
                   child: Text(product.description,
                       style: const TextStyle(
                         fontSize: 14,
                       ))),
-    
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -91,8 +99,8 @@ class _CardProductState extends State<CardProduct> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  ProductPage(product: product)),
+                            builder: (context) => ProductPage(product: product),
+                          ),
                         );
                       },
                     ),

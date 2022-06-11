@@ -1,9 +1,10 @@
-import 'package:ecommercefood/data/database.dart';
 import 'package:ecommercefood/modules/NavBar/NavBar.dart';
+import 'package:ecommercefood/modules/controller/state_controller.dart';
 import 'package:ecommercefood/modules/home/CardProduct.dart';
 import 'package:ecommercefood/modules/home/products_list.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FavoritesPage extends StatefulWidget {
   const FavoritesPage({Key? key}) : super(key: key);
@@ -15,24 +16,17 @@ class FavoritesPage extends StatefulWidget {
 class _FavoritesPageState extends State<FavoritesPage> {
   List<Product> listProducts = [];
 
-  List<Product> products() {
-    return DatabaseProducts.listProductsData
-      .where((product) => product.isFavorite == true)
-      .toList();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    listProducts = products();
-  }
+  
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     const paddingSafeArea = 20.0;
     final widthSafeArea = size.width - (paddingSafeArea * 2);
-    listProducts = products();
+    
+    final provider = Provider.of<StateController>(context);
+    listProducts = provider.getFavoriteProducts();
+
     return Scaffold(
       appBar: const NavBar(),
       body: SafeArea(
