@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:ecommercefood/data/database.dart';
+import 'package:ecommercefood/modules/models/Category.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/modules/models/ShoppingCart.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,12 +30,36 @@ class StateController extends ChangeNotifier {
   }
 
   List<Product> getProducts() {
-    return listProducts;
+    return getProductsFirebase();
+  }
+
+  List<Product> getProductsFirebase() {
+    // get products of firebase
+    http.get(Uri.parse(_baseUrl + '/products.json')).then((response) {
+      final Map<String, dynamic> data = json.decode(response.body);
+      final List<Product> loadedProducts = [];
+      data.forEach((id, prod) {
+        loadedProducts.add(Product(
+          id: id,
+          name: prod['title'],
+          description: prod['description'],
+          price: prod['price'],
+          imageUrl: prod['imageUrl'],
+          isFavorite: prod['isFavorite'],          
+          categoryId: prod['category'],
+        ));
+      });
+      listProducts.clear();
+      listProducts.addAll(loadedProducts);
+      notifyListeners();
+    });
+    return [...listProducts];
   }
 
   List<Product> getProductsShopping() {
     return shoppingCart.getProductsShopping();
   }
+
   List<Product> getFavoriteProducts() {
     return getProducts().where((p) => p.isFavorite).toList();
   }
@@ -42,7 +67,7 @@ class StateController extends ChangeNotifier {
   toggleFavorite(Product product) {
     product.toggleFavorite();
     notifyListeners();
-  } 
+  }
 
   Future<void> addProduct(Product product) {
     return postFirebase(product).then((response) {
@@ -65,8 +90,7 @@ class StateController extends ChangeNotifier {
       description: data['description'] as String,
       price: data['price'] as double,
       imageUrl: data['imageUrl'] as String,
-      category: DatabaseProducts
-          .listCategories[int.parse(data['category'] as String)],
+      categoryId: int.parse(data['category'] as String),
     );
 
     if (hasId) {
@@ -74,6 +98,10 @@ class StateController extends ChangeNotifier {
     } else {
       return addProduct(product);
     }
+  }
+
+  Category getCategory(int index) {
+    return DatabaseProducts.getListCategoriesOrderByTitle()[index];
   }
 
   void updateProductList(Product product) {
@@ -102,13 +130,7 @@ class StateController extends ChangeNotifier {
     final url = '$_baseUrl/products/${product.id}.json';
     return http.patch(
       Uri.parse(url),
-      body: jsonEncode({
-        "title": product.name,
-        "description": product.description,
-        "price": product.price,
-        "imageUrl": product.imageUrl,
-        "isFavorite": product.isFavorite,
-      }),
+      body: jsonEncodeProduct(product),
     );
   }
 
@@ -133,13 +155,18 @@ class StateController extends ChangeNotifier {
   Future<http.Response> postFirebase(Product product) {
     return http.post(
       Uri.parse('$_baseUrl/products.json'),
-      body: jsonEncode({
+      body: jsonEncodeProduct(product),
+    );
+  }
+
+  String jsonEncodeProduct(Product product) {
+    return jsonEncode({
         "title": product.name,
         "description": product.description,
         "price": product.price,
         "imageUrl": product.imageUrl,
         "isFavorite": product.isFavorite,
-      }),
-    );
+        "category": product.categoryId,
+      });
   }
 }

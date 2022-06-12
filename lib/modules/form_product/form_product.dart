@@ -53,7 +53,7 @@ class _FormProductState extends State<FormProduct> {
         _formData['price'] = product.price;
         _formData['description'] = product.description;
         _formData['imageUrl'] = product.imageUrl;
-        _formData['category'] = DatabaseProducts.listCategories.indexOf(product.category);
+        _formData['category'] = product.categoryId.toString();
         _imageUrlController.text = product.imageUrl;
       }
     }
@@ -118,8 +118,6 @@ class _FormProductState extends State<FormProduct> {
   // form edit product
   Widget _buildForm(BuildContext context) {
     final arg = ModalRoute.of(context)?.settings.arguments;
-
-    int indexSelect = 1;
 
     if (arg != null) {
       final product = arg as Product;
@@ -266,9 +264,11 @@ class _FormProductState extends State<FormProduct> {
         ),
         value: indexSelect,
         onChanged: (value) {
-          _formData['category'] = value.toString();
+          int currentValue = value as int;
+          currentValue = currentValue - 1;
+          _formData['category'] = currentValue.toString();
         },
-        items: DatabaseProducts.listCategories
+        items: DatabaseProducts.getListCategoriesOrderByTitle()
             .map((category) => DropdownMenuItem(
                   value: category.id,
                   child: Text(category.title),

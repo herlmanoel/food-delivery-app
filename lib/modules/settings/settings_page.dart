@@ -18,6 +18,12 @@ class SettingsPage extends StatelessWidget {
             },
           ),
         ],
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/home');  
+          },
+        ),
       ),
       body: Container(
         child: _buildProductList(context),
@@ -59,7 +65,7 @@ class SettingsPage extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.delete),
                 onPressed: () {
-                  // provider.removeProduct(product);
+                  provider.removeProduct(product);
                 },
               ),
             ],

@@ -9,7 +9,8 @@ class Product with ChangeNotifier {
   double price;
   int amountReviews;
   bool isFavorite;
-  Category category;
+  Category? category;
+  int categoryId;
   int quantity = 0;
   String imageUrl = '';
 
@@ -21,8 +22,8 @@ class Product with ChangeNotifier {
     required this.price,
     this.amountReviews = 0,
     this.isFavorite = false,
-    required this.category,
     this.imageUrl = '',
+    required this.categoryId,
   });
 
   String getPriceFormat() {
@@ -58,5 +59,10 @@ class Product with ChangeNotifier {
   void toggleFavorite() {
     isFavorite = !isFavorite;
     notifyListeners();
+  }
+
+  @override
+  String toString() {
+    return 'Product{id: $id, name: $name, description: $description, price: $price, amountReviews: $amountReviews, isFavorite: $isFavorite, categoryId: $categoryId, quantity: $quantity, imageUrl: $imageUrl}';
   }
 }

@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   List<Product> filterProducts(int idCategory, BuildContext context) {
     final provider = Provider.of<StateController>(context);
     return provider.listProducts
-        .where((product) => product.category.id == idCategory)
+        .where((product) => product.categoryId == idCategory)
         .toList();
   }
 
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
           ]),
         ),
       ),
-      bottomNavigationBar: MenuBar(),
+      bottomNavigationBar: const MenuBar(),
     );
   }
 
