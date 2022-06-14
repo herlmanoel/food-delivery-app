@@ -1,10 +1,10 @@
 import 'package:ecommercefood/data/database.dart';
-import 'package:ecommercefood/modules/NavBar/NavBar.dart';
+import 'package:ecommercefood/modules/components/NavBar.dart';
 import 'package:ecommercefood/modules/controller/state_controller.dart';
-import 'package:ecommercefood/modules/home/CardProduct.dart';
-import 'package:ecommercefood/modules/home/botton_navigation_bar.dart';
-import 'package:ecommercefood/modules/home/categories_menu.dart';
-import 'package:ecommercefood/modules/home/products_list.dart';
+import 'package:ecommercefood/modules/components/CardProduct.dart';
+import 'package:ecommercefood/modules/components/BottonNav.dart';
+import 'package:ecommercefood/modules/components/MenuCategories.dart';
+import 'package:ecommercefood/modules/components/ListProducts.dart';
 import 'package:ecommercefood/modules/models/Category.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/shared/themes/app_image.dart';
@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (BuildContext ctxt, int index) {
                   Category category = listCategories[index];
                   // return buttonCategory(category);
-                  return CategoriesMenu(
+                  return MenuCategories(
                     category: category,
                     setState: setState,
                     listCategories: listCategories,

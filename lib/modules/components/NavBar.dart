@@ -1,5 +1,5 @@
-import 'package:ecommercefood/modules/Modal/ModalCart.dart';
-import 'package:ecommercefood/modules/favorites/FavoritePage.dart';
+import 'package:ecommercefood/modules/components/cart/ModalCart.dart';
+import 'package:ecommercefood/modules/pages/FavoritePage.dart';
 import 'package:flutter/material.dart';
 import '../../shared/themes/app_colors.dart';
 

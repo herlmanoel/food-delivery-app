@@ -1,5 +1,5 @@
-import 'package:ecommercefood/modules/login/login_controller.dart';
-import 'package:ecommercefood/modules/login/login_social_button.dart';
+import 'package:ecommercefood/modules/controller/ControllerLogin.dart';
+import 'package:ecommercefood/modules/components/ButtonLogin.dart';
 import 'package:ecommercefood/shared/themes/app_colors.dart';
 import 'package:ecommercefood/shared/themes/app_image.dart';
 import 'package:flutter/material.dart';

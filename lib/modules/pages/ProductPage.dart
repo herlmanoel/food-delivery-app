@@ -1,4 +1,4 @@
-import 'package:ecommercefood/modules/NavBar/NavBar.dart';
+import 'package:ecommercefood/modules/components/NavBar.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/modules/models/ShoppingCart.dart';
 import 'package:ecommercefood/shared/themes/app_colors.dart';
@@ -18,7 +18,7 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    
+
     return Scaffold(
       appBar: const NavBar(),
       body: SingleChildScrollView(
@@ -46,19 +46,18 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   Column createColumn(Size size, var context, Product product) {
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 20),
         Container(
-            width: size.width,
-            height: 200,
-            alignment: Alignment.center,
-            child: Image.network(
-                product.imageUrl,
-                fit: BoxFit.cover,
-              ),
+          width: size.width,
+          height: 200,
+          alignment: Alignment.center,
+          child: Image.network(
+            product.imageUrl,
+            fit: BoxFit.cover,
+          ),
         ),
         const SizedBox(height: 20),
         Row(
@@ -77,7 +76,9 @@ class _ProductPageState extends State<ProductPage> {
                 IconButton(
                   icon: Icon(
                     product.isFavorite ? Icons.favorite : Icons.favorite_border,
-                    color: product.isFavorite ? AppColors.backgroundSplash : Colors.black,
+                    color: product.isFavorite
+                        ? AppColors.backgroundSplash
+                        : Colors.black,
                   ),
                   onPressed: () {
                     setState(() {
@@ -94,7 +95,7 @@ class _ProductPageState extends State<ProductPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              product.getPriceFormat(),
+              product.getTotalFormat(),
               style: const TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -121,7 +122,7 @@ class _ProductPageState extends State<ProductPage> {
                       ),
                       onPressed: () {
                         setState(() {
-                          if(product.quantity <= 0) return;
+                          if (product.quantity <= 0) return;
                           product.quantity = product.quantity - 1;
                         });
                       },
@@ -195,7 +196,7 @@ class _ProductPageState extends State<ProductPage> {
               ),
               child: TextButton(
                 onPressed: () {
-                  if(product.id == null) return;
+                  if (product.id == null) return;
                   ShoppingCart.listIdsProducts.add(product.id as String);
                   Navigator.pop(context);
                 },

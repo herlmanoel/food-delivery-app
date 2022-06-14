@@ -2,13 +2,13 @@ import 'package:ecommercefood/modules/models/Category.dart';
 import 'package:ecommercefood/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class CategoriesMenu extends StatelessWidget {
+class MenuCategories extends StatelessWidget {
   Category category;
   final Function(Function()) setState;
   List<Category> listCategories;
   final Function(int id) setIdSelectCategory;
 
-  CategoriesMenu(
+  MenuCategories(
       {required this.category,
       required this.setState,
       required this.setIdSelectCategory,

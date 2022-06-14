@@ -7,7 +7,11 @@ class CardCart extends StatefulWidget {
   double widthFather;
   Product product;
   StateController provider;
-  CardCart({ required this.provider, required this.widthFather, required this.product, Key? key});
+  CardCart(
+      {required this.provider,
+      required this.widthFather,
+      required this.product,
+      Key? key});
 
   @override
   State<CardCart> createState() => _CardCartState(widthFather, product);
@@ -40,21 +44,29 @@ class _CardCartState extends State<CardCart> {
           child: Row(
             children: <Widget>[
               // Image.asset(AppImages.burguerProduct),
-              Image.network(
-                product.imageUrl,
-                fit: BoxFit.cover,
-              ),
-              const SizedBox(width: 10),
-              SizedBox(
+              Column(
+                children: [
+                  SizedBox(
                   child: Text(product.name,
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.bold))),
-              const SizedBox(width: 10),
+                  const SizedBox(width: 10),
+                  Container(
+                    width: 100,
+                    height: 100,
+                    alignment: Alignment.center,
+                    child: Image.network(
+                      product.imageUrl,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    product.getPriceFormat(),
+                    product.getTotalFormat(),
                     style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

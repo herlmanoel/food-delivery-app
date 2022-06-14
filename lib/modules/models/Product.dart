@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 
 class Product with ChangeNotifier {
   String? id;
-  double starts;
   String name;
   String description;
   double price;
-  int amountReviews;
   bool isFavorite;
   Category? category;
   int categoryId;
@@ -16,33 +14,37 @@ class Product with ChangeNotifier {
 
   Product({
     this.id,
-    this.starts = 0.0,
     required this.name,
     this.description = '',
     required this.price,
-    this.amountReviews = 0,
     this.isFavorite = false,
     this.imageUrl = '',
     required this.categoryId,
   });
 
-  String getPriceFormat() {
-    if(quantity <= 0) {
+  String getTotalFormat() {
+    if (quantity <= 0) {
       return 'R\$ ${price.toStringAsFixed(2)}';
-    } 
-    return 'R\$ ${(price * quantity).toStringAsFixed(2)}'; 
+    }
+    return 'R\$ ${(price * quantity).toStringAsFixed(2)}';
   }
 
-  double getPrice() {
-    if(quantity <= 0) {
+  String getPriceFormat() {
+    if (quantity <= 0) {
+      return 'R\$ ${price.toStringAsFixed(2)}';
+    }
+    return 'R\$ ${price.toStringAsFixed(2)}';
+  }
+
+  double getTotal() {
+    if (quantity <= 0) {
       return price;
-    } 
-    return price * quantity; 
+    }
+    return price * quantity;
   }
 
-
-  String getAmountReviewsFormat() {
-    return '($amountReviews ${amountReviews == 1 ? 'review' : 'reviews'})';
+  int get getQuantity {
+    return quantity;
   }
 
   incrementQuantity() {
@@ -51,7 +53,7 @@ class Product with ChangeNotifier {
   }
 
   decrementQuantity() {
-    if(quantity <= 0) return;
+    if (quantity <= 0) return;
     quantity--;
     notifyListeners();
   }
@@ -63,6 +65,6 @@ class Product with ChangeNotifier {
 
   @override
   String toString() {
-    return 'Product{id: $id, name: $name, description: $description, price: $price, amountReviews: $amountReviews, isFavorite: $isFavorite, categoryId: $categoryId, quantity: $quantity, imageUrl: $imageUrl}';
+    return 'Product{id: $id, name: $name, description: $description, price: $price, isFavorite: $isFavorite, categoryId: $categoryId, quantity: $quantity, imageUrl: $imageUrl}';
   }
 }

@@ -1,4 +1,4 @@
-import 'package:ecommercefood/modules/home/ProductPage.dart';
+import 'package:ecommercefood/modules/pages/ProductPage.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -37,18 +37,6 @@ class _CardProductState extends State<CardProduct> {
         child: Expanded(
           child: Column(
             children: <Widget>[
-              Row(
-                children: [
-                  const Icon(
-                    Icons.star_rate,
-                    color: Colors.yellow,
-                  ),
-                  Text(
-                    "${product.starts}",
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                ],
-              ),
               const SizedBox(height: 10),
               // Image.asset(AppImages.burguerProduct),
               Image.network(

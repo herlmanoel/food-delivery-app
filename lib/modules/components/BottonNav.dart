@@ -1,5 +1,5 @@
-import 'package:ecommercefood/modules/Modal/ModalCart.dart';
-import 'package:ecommercefood/modules/settings/settings_page.dart';
+import 'package:ecommercefood/modules/components/cart/ModalCart.dart';
+import 'package:ecommercefood/modules/pages/SettingsPage.dart';
 import 'package:flutter/material.dart';
 
 class MenuBar extends StatefulWidget {

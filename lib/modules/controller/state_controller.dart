@@ -71,7 +71,6 @@ class StateController extends ChangeNotifier {
 
   Future<void> addProduct(Product product) {
     return postFirebase(product).then((response) {
-      print(jsonDecode(response.body));
       final id = jsonDecode(response.body)['name'];
       product.id = id;
       listProducts.add(product);

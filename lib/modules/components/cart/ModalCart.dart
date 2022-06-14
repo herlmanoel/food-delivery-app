@@ -2,7 +2,7 @@ import 'package:ecommercefood/modules/controller/state_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:provider/provider.dart';
-import '../../shared/themes/app_colors.dart';
+import '../../../shared/themes/app_colors.dart';
 import 'CardCart.dart';
 
 class ModalCart extends StatefulWidget implements PreferredSizeWidget {
@@ -28,7 +28,6 @@ class _CartModalState extends State<ModalCart>{
     final widthSafeArea = size.width - (paddingSafeArea * 2);
     final provider = Provider.of<StateController>(context);
     listProducts = provider.getProductsShopping();
-    print("aaa");
 
     return Expanded(child: Container(
       color: AppColors.stroke,

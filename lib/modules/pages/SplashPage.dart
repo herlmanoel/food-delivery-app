@@ -1,7 +1,7 @@
-import 'package:ecommercefood/modules/splash/gradient.dart';
+import 'package:ecommercefood/modules/components/GradientSplash.dart';
 import 'package:flutter/material.dart';
 
-import 'package:ecommercefood/modules/splash/button.dart';
+import 'package:ecommercefood/modules/components/ButtonSplash.dart';
 import 'package:ecommercefood/shared/themes/app_colors.dart';
 import 'package:ecommercefood/shared/themes/app_image.dart';
 import 'package:ecommercefood/shared/themes/app_text_style.dart';

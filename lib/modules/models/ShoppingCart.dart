@@ -34,7 +34,7 @@ class ShoppingCart extends ChangeNotifier {
   double get total {
     double total = 0;
     for (String id in listIdsProducts) {
-      total += getProductsShopping().firstWhere((p) => p.id == id).getPrice();
+      total += (getProductsShopping().firstWhere((p) => p.id == id).getTotal());
     }
     return total;
   }

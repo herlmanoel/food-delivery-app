@@ -1,10 +1,10 @@
-import 'package:ecommercefood/modules/favorites/FavoritePage.dart';
-import 'package:ecommercefood/modules/form_product/form_product.dart';
-import 'package:ecommercefood/modules/login/login_page.dart';
-import 'package:ecommercefood/modules/splash/splash_page.dart';
+import 'package:ecommercefood/modules/pages/FavoritePage.dart';
+import 'package:ecommercefood/modules/components/FormProduct.dart';
+import 'package:ecommercefood/modules/pages/LoginPage.dart';
+import 'package:ecommercefood/modules/pages/SplashPage.dart';
 import 'package:flutter/material.dart';
 
-import 'modules/home/HomePage.dart';
+import 'modules/pages/HomePage.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

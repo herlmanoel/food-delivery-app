@@ -1,7 +1,7 @@
-import 'package:ecommercefood/modules/NavBar/NavBar.dart';
+import 'package:ecommercefood/modules/components/NavBar.dart';
 import 'package:ecommercefood/modules/controller/state_controller.dart';
-import 'package:ecommercefood/modules/home/CardProduct.dart';
-import 'package:ecommercefood/modules/home/products_list.dart';
+import 'package:ecommercefood/modules/components/CardProduct.dart';
+import 'package:ecommercefood/modules/components/ListProducts.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
