@@ -47,7 +47,7 @@ class _CartModalState extends State<ModalCart>{
             Column(
               children: [
                 Text("Preço total: ${provider.shoppingCart.total}", style: const TextStyle(fontSize: 16),),
-                Text("Total de produtos: ${listProducts.length}", style: const TextStyle(fontSize: 16),),
+                Text("Tipos de produtos: ${provider.shoppingCart.totalItens}", style: const TextStyle(fontSize: 16),),
               ],
             ),
             Expanded(child: listProducts.isNotEmpty

@@ -2,6 +2,8 @@ import 'package:ecommercefood/modules/controller/state_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../shared/themes/app_colors.dart';
+
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
@@ -9,6 +11,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.backgroundSplash,
         title: const Text('Configurações'),
         actions: [
           IconButton(

@@ -20,6 +20,7 @@ class Product with ChangeNotifier {
     this.isFavorite = false,
     this.imageUrl = '',
     required this.categoryId,
+    this.quantity = 0,
   });
 
   String getTotalFormat() {
@@ -43,7 +44,7 @@ class Product with ChangeNotifier {
     return price * quantity;
   }
 
-  int get getQuantity {
+  int getQuantity() {
     return quantity;
   }
 

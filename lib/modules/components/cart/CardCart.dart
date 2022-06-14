@@ -47,9 +47,9 @@ class _CardCartState extends State<CardCart> {
               Column(
                 children: [
                   SizedBox(
-                  child: Text(product.name,
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold))),
+                      child: Text(product.name,
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold))),
                   const SizedBox(width: 10),
                   Container(
                     width: 100,
@@ -92,10 +92,13 @@ class _CardCartState extends State<CardCart> {
                             ),
                             onPressed: () {
                               setState(() {
-                                if (product.quantity <= 0) return;
-                                product.quantity = product.quantity - 1;
+                                if (product.quantity <= 0) {
+                                  return;
+                                }
+                                if (product.quantity > 0) {
+                                  product.quantity = product.quantity - 1;
+                                }
                               });
-                              widget.provider.notifyListeners();
                             },
                           ),
                         ),
@@ -129,7 +132,6 @@ class _CardCartState extends State<CardCart> {
                               setState(() {
                                 product.quantity = product.quantity + 1;
                               });
-                              widget.provider.notifyListeners();
                             },
                           ),
                         )

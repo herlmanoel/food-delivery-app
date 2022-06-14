@@ -156,6 +156,8 @@ class _ProductPageState extends State<ProductPage> {
                       ),
                       onPressed: () {
                         setState(() {
+                          if (product.id == null) return;
+                          ShoppingCart.listIdsProducts.add(product.id as String);
                           product.quantity = product.quantity + 1;
                         });
                       },
@@ -196,8 +198,7 @@ class _ProductPageState extends State<ProductPage> {
               ),
               child: TextButton(
                 onPressed: () {
-                  if (product.id == null) return;
-                  ShoppingCart.listIdsProducts.add(product.id as String);
+                  
                   Navigator.pop(context);
                 },
                 child: const Center(
