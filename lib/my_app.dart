@@ -17,13 +17,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/home',
+      initialRoute: '/splash',
       routes: {
         '/splash': (context) => SplashPage(),
         '/home': (context) => const HomePage(),
         '/login': (context) => const LoginPage(),
         '/favorites': (context) => const FavoritesPage(),
-        '/form-product': (context) => FormProduct(),
+        '/form-product': (context) => const FormProduct(),
       },
     );
   }

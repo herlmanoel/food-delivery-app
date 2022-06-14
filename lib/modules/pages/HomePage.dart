@@ -2,7 +2,7 @@ import 'package:ecommercefood/data/database.dart';
 import 'package:ecommercefood/modules/components/NavBar.dart';
 import 'package:ecommercefood/modules/controller/state_controller.dart';
 import 'package:ecommercefood/modules/components/CardProduct.dart';
-import 'package:ecommercefood/modules/components/BottonNav.dart';
+import 'package:ecommercefood/modules/components/NavBotton.dart';
 import 'package:ecommercefood/modules/components/MenuCategories.dart';
 import 'package:ecommercefood/modules/components/ListProducts.dart';
 import 'package:ecommercefood/modules/models/Category.dart';
@@ -10,6 +10,7 @@ import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/shared/themes/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../pages/SettingsPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   List<Category> listCategories = [];
 
   int idSelectedCategory = 1;
-
+  
   List<Product> filterProducts(int idCategory, BuildContext context) {
     final provider = Provider.of<StateController>(context);
     return provider.listProducts
@@ -43,6 +44,7 @@ class _HomePageState extends State<HomePage> {
     const paddingSafeArea = 20.0;
     final widthSafeArea = size.width - (paddingSafeArea * 2);
     listProducts = filterProducts(idSelectedCategory, context);
+    const SettingsPage().build(context);
     return Scaffold(
       appBar: const NavBar(),
       body: SafeArea(
@@ -93,7 +95,7 @@ class _HomePageState extends State<HomePage> {
           ]),
         ),
       ),
-      bottomNavigationBar: const MenuBar(),
+      bottomNavigationBar: const NavBotton(),
     );
   }
 

@@ -2,14 +2,14 @@ import 'package:ecommercefood/modules/components/cart/ModalCart.dart';
 import 'package:ecommercefood/modules/pages/SettingsPage.dart';
 import 'package:flutter/material.dart';
 
-class MenuBar extends StatefulWidget {
-  const MenuBar({Key? key}) : super(key: key);
+class NavBotton extends StatefulWidget {
+  const NavBotton({Key? key}) : super(key: key);
 
   @override
-  State<MenuBar> createState() => _MenuBarState();
+  State<NavBotton> createState() => _NavBottonState();
 }
 
-class _MenuBarState extends State<MenuBar> {
+class _NavBottonState extends State<NavBotton> {
   int currentPage = 0;
 
   @override
@@ -34,7 +34,6 @@ class _MenuBarState extends State<MenuBar> {
           IconButton(
             onPressed: () {
               currentPage = 0;
-              // Navigator.pushNamed(context, '/');
               setState(() {});
             },
             icon: Icon(
@@ -47,7 +46,6 @@ class _MenuBarState extends State<MenuBar> {
           IconButton(
             onPressed: () {
               currentPage = 1;
-              // Navigator.pushNamed(context, '/favorites');
               setState(() {});
               Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage()));
             },

@@ -38,16 +38,7 @@ class SettingsPage extends StatelessWidget {
       itemBuilder: (_, index) {
         final product = provider.getProducts()[index];
         return ListTile(
-          // leading: CircleAvatar(
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(5),
-          //     child: FadeInImage.assetNetwork(
-          //       placeholder: 'assets/images/no-image.png',
-          //       image: product.imageUrl,
-          //       fit: BoxFit.cover,
-          //     ),
-          //   ),
-          // ),
+
           title: Text(product.name),
           subtitle: Text('R\$ ${product.price.toStringAsFixed(2)}'),
           trailing: Row(
