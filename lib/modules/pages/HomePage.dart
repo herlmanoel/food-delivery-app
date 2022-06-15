@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   
   List<Product> filterProducts(int idCategory, BuildContext context) {
     final provider = Provider.of<StateController>(context);
-    return provider.listProducts
+    return provider.getProducts()
         .where((product) => product.categoryId == idCategory)
         .toList();
   }

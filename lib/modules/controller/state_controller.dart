@@ -9,8 +9,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 class StateController extends ChangeNotifier {
-  List<Product> listProducts = DatabaseProducts.listProductsData;
+  List<Product> listProducts = [];
   ShoppingCart shoppingCart = ShoppingCart();
+  
 
   final _baseUrl =
       'https://ecommerce-mini-projeto-04-default-rtdb.firebaseio.com';
@@ -43,7 +44,7 @@ class StateController extends ChangeNotifier {
           id: id,
           name: prod['title'],
           description: prod['description'],
-          price: prod['price'],
+          price: prod['price'].toDouble(),
           imageUrl: prod['imageUrl'],
           isFavorite: prod['isFavorite'],          
           categoryId: prod['category'],
@@ -51,6 +52,7 @@ class StateController extends ChangeNotifier {
       });
       listProducts.clear();
       listProducts.addAll(loadedProducts);
+      print("aqui");
       notifyListeners();
     });
     return [...listProducts];
