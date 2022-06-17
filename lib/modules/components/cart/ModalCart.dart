@@ -13,7 +13,7 @@ class ModalCart extends StatefulWidget implements PreferredSizeWidget {
   State<ModalCart> createState() => _CartModalState();
 }
 
-class _CartModalState extends State<ModalCart>{
+class _CartModalState extends State<ModalCart> {
   List<Product> listProducts = [];
 
   void atualizarList() {
@@ -29,38 +29,97 @@ class _CartModalState extends State<ModalCart>{
     final provider = Provider.of<StateController>(context);
     listProducts = provider.getProductsShopping();
 
-    return Expanded(child: Container(
-      color: AppColors.stroke,
-      child: Column(
+    return Container(
+      decoration: _decoration(), 
+      width: size.width * 0.5,     
+      child: listProducts.isEmpty ? _notContentPage() : _contentPage(widthSafeArea, provider, listProducts),
+    );
+  }
+
+  BoxDecoration _decoration() {
+    return const BoxDecoration(
+        color: AppColors.stroke,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      );
+  }
+
+  Widget _notContentPage() {
+    return const Center(
+      child: Text(
+        'Nenhum produto adicionado',
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  Widget _contentPage(var widthSafeArea, var provider, var listProducts) {
+    return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.close),
-                  onPressed: () => Navigator.pop(context),
+            const SizedBox(
+              height: 20,
+            ),
+        Container(
+          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Subtotal",
+                    style: TextStyle(fontSize: 16),
+                    textAlign: TextAlign.left,
+                  ),
+                  Text(
+                    provider.totalPriceShoppingCartFormat,
+                    style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.left,
+                  ),
+                ],
+              ),
+              // text button finalizar compra
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: AppColors.backgroundSplash,
                 ),
-              ],
-            ),
-            Column(
-              children: [
-                Text("Preço total: ${provider.shoppingCart.total}", style: const TextStyle(fontSize: 16),),
-                Text("Tipos de produtos: ${provider.shoppingCart.totalItens}", style: const TextStyle(fontSize: 16),),
-              ],
-            ),
-            Expanded(child: listProducts.isNotEmpty
-                ? ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (context, i) =>
-                      CardCart(widthFather: widthSafeArea, product: listProducts[i], provider: provider),
-                    itemCount: listProducts.length,
-                  )
-                : Container(),
-            )
-          ],
+                child: TextButton(
+                  child: const Text(
+                    "Finalizar compra",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
-    ));
+        listProducts.isNotEmpty
+            ? ListView.builder(
+                padding: const EdgeInsets.all(20),
+                scrollDirection: Axis.vertical,
+                // itemExtent: 70.0,
+                shrinkWrap: true,
+                itemBuilder: (context, i) => CardCart(
+                    widthFather: widthSafeArea,
+                    product: listProducts[i],
+                    provider: provider),
+                itemCount: listProducts.length,
+              )
+            : Container()
+          ],
+        );
   }
 }

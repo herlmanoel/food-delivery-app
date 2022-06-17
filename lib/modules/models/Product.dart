@@ -25,16 +25,16 @@ class Product with ChangeNotifier {
 
   String getTotalFormat() {
     if (quantity <= 0) {
-      return 'R\$ ${price.toStringAsFixed(2)}';
+      return 'R\$ ${price.toStringAsFixed(2).replaceAll('.', ',')}';
     }
-    return 'R\$ ${(price * quantity).toStringAsFixed(2)}';
+    return 'R\$ ${(price * quantity).toStringAsFixed(2).replaceAll('.', ',')}';
   }
 
   String getPriceFormat() {
     if (quantity <= 0) {
-      return 'R\$ ${price.toStringAsFixed(2)}';
+      return 'R\$ ${price.toStringAsFixed(2).replaceAll('.', ',')}';
     }
-    return 'R\$ ${price.toStringAsFixed(2)}';
+    return 'R\$ ${price.toStringAsFixed(2).replaceAll('.', ',')}';
   }
 
   double getTotal() {
@@ -62,6 +62,22 @@ class Product with ChangeNotifier {
   void toggleFavorite() {
     isFavorite = !isFavorite;
     notifyListeners();
+  }
+
+  String getDescriptionResume() {
+    int numChars = 10;
+    if (description.length > numChars) {
+      return description.substring(0, numChars) + '...';
+    }
+    return description;
+  }
+
+  String getNameResume() {
+    int numChars = 15;
+    if (name.length > numChars) {
+      return name.substring(0, numChars) + '...';
+    }
+    return name;
   }
 
   @override

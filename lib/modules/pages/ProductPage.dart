@@ -1,12 +1,13 @@
 import 'package:ecommercefood/modules/components/NavBar.dart';
+import 'package:ecommercefood/modules/controller/state_controller.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
-import 'package:ecommercefood/modules/models/ShoppingCart.dart';
 import 'package:ecommercefood/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductPage extends StatefulWidget {
-  Product product;
-  ProductPage({required this.product, Key? key}) : super(key: key);
+  Product? product;
+  ProductPage({ this.product, Key? key}) : super(key: key);
 
   @override
   State<ProductPage> createState() => _ProductPageState();
@@ -18,6 +19,7 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final provider = Provider.of<StateController>(context);
 
     return Scaffold(
       appBar: const NavBar(),
@@ -31,12 +33,14 @@ class _ProductPageState extends State<ProductPage> {
                   color: AppColors.foodBackground,
                   height: 300,
                 ),
+                widget.product != null ?
                 SafeArea(
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: createColumn(size, context, widget.product),
+                    child: createColumn(size, context, widget.product as Product, provider),
                   ),
-                ),
+                )
+                : Container(),
               ],
             )
           ]),
@@ -45,7 +49,7 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
-  Column createColumn(Size size, var context, Product product) {
+  Widget createColumn(Size size, var context, Product product, StateController provider) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -157,7 +161,7 @@ class _ProductPageState extends State<ProductPage> {
                       onPressed: () {
                         setState(() {
                           if (product.id == null) return;
-                          ShoppingCart.listIdsProducts.add(product.id as String);
+                          provider.addProductShopping(product);
                           product.quantity = product.quantity + 1;
                         });
                       },
@@ -198,7 +202,8 @@ class _ProductPageState extends State<ProductPage> {
               ),
               child: TextButton(
                 onPressed: () {
-                  
+                  final provider = Provider.of<StateController>(context, listen: false);
+                  provider.addProductShopping(product);
                   Navigator.pop(context);
                 },
                 child: const Center(

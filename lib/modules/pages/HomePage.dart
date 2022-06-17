@@ -1,10 +1,10 @@
 import 'package:ecommercefood/data/database.dart';
 import 'package:ecommercefood/modules/components/NavBar.dart';
+import 'package:ecommercefood/modules/components/product_grid.dart';
 import 'package:ecommercefood/modules/controller/state_controller.dart';
 import 'package:ecommercefood/modules/components/CardProduct.dart';
 import 'package:ecommercefood/modules/components/NavBotton.dart';
 import 'package:ecommercefood/modules/components/MenuCategories.dart';
-import 'package:ecommercefood/modules/components/ListProducts.dart';
 import 'package:ecommercefood/modules/models/Category.dart';
 import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:ecommercefood/shared/themes/app_image.dart';
@@ -24,10 +24,11 @@ class _HomePageState extends State<HomePage> {
   List<Category> listCategories = [];
 
   int idSelectedCategory = 1;
-  
+
   List<Product> filterProducts(int idCategory, BuildContext context) {
     final provider = Provider.of<StateController>(context);
-    return provider.getProducts()
+    return provider
+        .getProducts()
         .where((product) => product.categoryId == idCategory)
         .toList();
   }
@@ -62,8 +63,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Transform.scale(
-                  scale: 0.8,
-                  child: Image.asset(AppImages.delivery)),
+                    scale: 0.8, child: Image.asset(AppImages.delivery)),
               ],
             ),
             SizedBox(
@@ -84,14 +84,15 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             // const SizedBox(height: 5),
-            Expanded(
-              child: listProducts.isNotEmpty
-                  ? ProductsList(
-                      paddingSafeArea: paddingSafeArea,
-                      widthSafeArea: widthSafeArea,
-                  )
-                  : Container(),
-            )
+            // Expanded(
+            //   child: listProducts.isNotEmpty
+            //       ? ProductsList(
+            //           paddingSafeArea: paddingSafeArea,
+            //           widthSafeArea: widthSafeArea,
+            //       )
+            //       : Container(),
+            // )
+            ProductGrid(products: listProducts),
           ]),
         ),
       ),

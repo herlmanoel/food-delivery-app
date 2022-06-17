@@ -3,7 +3,7 @@ import 'package:ecommercefood/modules/models/Product.dart';
 import 'package:flutter/cupertino.dart';
 
 class ShoppingCart extends ChangeNotifier {
-  static List<String> listIdsProducts = [];
+  List<String> listIdsProducts = [];
 
    void addItem(String id) {
     listIdsProducts.add(id);
@@ -33,6 +33,10 @@ class ShoppingCart extends ChangeNotifier {
 
   double get total {
     double total = 0;
+    if(getProductsShopping().isEmpty){
+      return total;
+    }
+    
     for (String id in listIdsProducts) {
       total += (getProductsShopping().firstWhere((p) => p.id == id).getTotal());
     }

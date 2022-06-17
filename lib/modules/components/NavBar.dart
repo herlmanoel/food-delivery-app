@@ -31,6 +31,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
           tooltip: 'Go to the next page',
           onPressed: () {
             showModalBottomSheet<void>(
+                backgroundColor: Colors.transparent,
                 context: context,
                 builder: (BuildContext context) {
                   return const ModalCart();

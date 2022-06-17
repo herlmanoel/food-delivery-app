@@ -21,6 +21,12 @@ class StateController extends ChangeNotifier {
     notifyListeners();
   }
 
+  // remove product shopping cart
+  void removeItemShoppingCart(Product product) {
+    shoppingCart.removeItem(product.id as String);
+    notifyListeners();
+  }
+
   void removeItem(Product product) {
     listProducts.remove(product);
     notifyListeners();
@@ -30,8 +36,28 @@ class StateController extends ChangeNotifier {
     return listProducts.length;
   }
 
+  double get totalPriceShoppingCart {
+    double total = 0.0;
+    if(getProductsShopping().isEmpty) {
+      return total;
+    }
+
+    getProductsShopping().forEach((product) {
+      total += product.price * product.quantity;
+    });
+    return total;
+  }
+
+  String get totalPriceShoppingCartFormat {
+    return "R\$ ${totalPriceShoppingCart.toStringAsFixed(2).replaceAll('.', ',')}";
+  }
+
   List<Product> getProducts() {
-    return getProductsFirebase();
+    if(listProducts.isEmpty) {
+      return getProductsFirebase();
+    }else {
+      return listProducts;
+    }
   }
 
   List<Product> getProductsFirebase() {
@@ -52,14 +78,24 @@ class StateController extends ChangeNotifier {
       });
       listProducts.clear();
       listProducts.addAll(loadedProducts);
-      print("aqui");
+      print("a");
       notifyListeners();
     });
     return [...listProducts];
   }
 
   List<Product> getProductsShopping() {
-    return shoppingCart.getProductsShopping();
+    return listProducts
+        .where(
+          (product) => shoppingCart.listIdsProducts.contains(product.id),
+        )
+        .toList();
+  }
+
+  void addProductShopping(Product product) {
+    print("add");
+    shoppingCart.addItem(product.id as String);
+    notifyListeners();
   }
 
   List<Product> getFavoriteProducts() {

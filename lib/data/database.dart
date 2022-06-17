@@ -19,7 +19,26 @@ class DatabaseProducts {
     return listCategories.toList()..sort((a, b) => a.title.compareTo(b.title));
   }
 
-  static List<Product> listProductsData = [];
+  static List<Product> listProductsData = [
+    Product(
+      id: 'p1',
+      name: 'Sandwich',
+      description: 'Sandwich de hambúrguer Sandwich de hambúrguer Sandwich de hambúrguer Sandwich de hambúrguer',
+      imageUrl: 'https://www.seekpng.com/png/detail/408-4083760_png-hamburguer-po-de-hamburguer-congelado.png',
+      isFavorite: false,
+      price: 10.0,
+      categoryId: listCategories[0].id
+    ),
+    Product(
+      id: 'p2',
+      name: 'Sandwich',
+      description: 'Sandwich de hambúrguer',
+      imageUrl: 'https://www.seekpng.com/png/detail/408-4083760_png-hamburguer-po-de-hamburguer-congelado.png',
+      isFavorite: false,
+      price: 10.0,
+      categoryId: listCategories[0].id
+    ),
+  ];
 
   static putProduct(Product product) {
     int indexProduct =
