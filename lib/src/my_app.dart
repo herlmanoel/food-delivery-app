@@ -1,10 +1,5 @@
-import 'package:ecommercefood/src/modules/components/FormProduct.dart';
 import 'package:ecommercefood/src/modules/controller/state_controller.dart';
-import 'package:ecommercefood/src/modules/pages/FavoritePage.dart';
-import 'package:ecommercefood/src/modules/pages/HomePage.dart';
-import 'package:ecommercefood/src/modules/pages/LoginPage.dart';
-import 'package:ecommercefood/src/modules/pages/ProductPage.dart';
-import 'package:ecommercefood/src/modules/pages/SplashPage.dart';
+import 'package:ecommercefood/src/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,14 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/home',
-      routes: {
-        '/splash': (context) => SplashPage(),
-        '/home': (context) => const HomePage(),
-        '/login': (context) => const LoginPage(),
-        '/favorites': (context) => const FavoritesPage(),
-        '/form-product': (context) => const FormProduct(),
-        '/product-page': (context) => ProductPage(),
-      },
+      routes: Routes.routes,
     );
   }
 }
