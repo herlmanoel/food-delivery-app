@@ -41,10 +41,11 @@ class _CardProductState extends State<CardProduct> {
             children: <Widget>[
               const SizedBox(height: 10),
               // Image.asset(AppImages.burguerProduct),
-              Image.network(
-                product.imageUrl,
-                fit: BoxFit.cover,
-              ),
+              // Image.network(
+              //   product.imageUrl,
+              //   fit: BoxFit.cover,
+              // ),
+              product.getImage(BoxFit.cover),
               const SizedBox(height: 10),
               SizedBox(
                 child: Text(

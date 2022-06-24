@@ -31,10 +31,11 @@ class ProductItem extends StatelessWidget {
         // space between the elements vertically
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Image.network(
-            product.imageUrl,
-            fit: BoxFit.cover,
-          ),
+          // Image.network(
+          //   product.imageUrl,
+          //   fit: BoxFit.cover,
+          // ),
+          product.getImage(BoxFit.cover),
           SizedBox(
             child: Text(
               product.name,

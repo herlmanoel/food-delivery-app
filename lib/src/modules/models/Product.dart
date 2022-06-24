@@ -1,4 +1,7 @@
+
+
 import 'package:ecommercefood/src/modules/models/Category.dart';
+import 'package:ecommercefood/src/shared/themes/app_image.dart';
 import 'package:flutter/material.dart';
 
 class Product with ChangeNotifier {
@@ -78,6 +81,30 @@ class Product with ChangeNotifier {
       return name.substring(0, numChars) + '...';
     }
     return name;
+  }
+
+  Image getImageNetwork(BoxFit? boxFit) {
+    if (boxFit != null) {
+      return Image.network(
+        imageUrl,
+        fit: boxFit,
+        height: 100,
+      );
+    }
+    return Image.network(imageUrl);
+  }
+
+  Image getImage(BoxFit? boxFit) {
+    Image img;
+
+    try {
+      img = getImageNetwork(boxFit);
+    } catch (e) {
+      print(e);
+      img = Image.asset(AppImages.burguerProduct);
+    }
+
+    return img;
   }
 
   @override

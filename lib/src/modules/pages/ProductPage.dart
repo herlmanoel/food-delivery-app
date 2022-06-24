@@ -60,10 +60,11 @@ class _ProductPageState extends State<ProductPage> {
           width: size.width,
           height: 200,
           alignment: Alignment.center,
-          child: Image.network(
-            product.imageUrl,
-            fit: BoxFit.cover,
-          ),
+          // child: Image.network(
+          //   product.imageUrl,
+          //   fit: BoxFit.cover,
+          // ),
+          child: product.getImage(BoxFit.cover),
         ),
         const SizedBox(height: 20),
         Row(

@@ -47,10 +47,11 @@ class _CardCartState extends State<CardCart> {
                 width: 100,
                 height: 100,
                 alignment: Alignment.center,
-                child: Image.network(
-                  product.imageUrl,
-                  fit: BoxFit.cover,
-                ),
+                // child: Image.network(
+                //   product.imageUrl,
+                //   fit: BoxFit.cover,
+                // ),
+                child: product.getImage(BoxFit.cover),
               ),
               const SizedBox(width: 10),
               Column(

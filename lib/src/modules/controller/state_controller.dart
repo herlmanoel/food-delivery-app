@@ -191,6 +191,7 @@ class StateController extends ChangeNotifier {
   }
 
   Future<http.Response> postFirebase(Product product) {
+    print(jsonEncodeProduct(product));
     return http.post(
       Uri.parse('$_baseUrl/products.json'),
       body: jsonEncodeProduct(product),
