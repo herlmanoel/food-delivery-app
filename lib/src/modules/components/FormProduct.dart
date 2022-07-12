@@ -262,11 +262,10 @@ class _FormProductState extends State<FormProduct> {
         decoration: const InputDecoration(
           labelText: 'Categoria',
         ),
-        value: indexSelect,
+        // value: ,
         onChanged: (value) {
-          int currentValue = value as int;
-          currentValue = currentValue - 1;
-          _formData['category'] = currentValue.toString();
+          if(value == null) return;
+          _formData['category'] = value.toString();
         },
         items: DatabaseProducts.getListCategoriesOrderByTitle()
             .map((category) => DropdownMenuItem(
