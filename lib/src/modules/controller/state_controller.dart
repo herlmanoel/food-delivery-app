@@ -67,14 +67,21 @@ class StateController extends ChangeNotifier {
       final Map<String, dynamic> data = json.decode(response.body);
       final List<Product> loadedProducts = [];
       data.forEach((id, prod) {
+        final String title = prod['title'];
+        final String description = prod['description'];
+        final double price = double.parse(prod['price'].toString());
+        final String imageUrl = prod['imageUrl'];
+        final int category = prod['category'];
+        final bool isFavorite = prod['isFavorite'];
+
         loadedProducts.add(Product(
           id: id,
-          name: prod['title'],
-          description: prod['description'],
-          price: prod['price'] is int ? prod['price'].toDouble() : prod['price'],
-          imageUrl: prod['imageUrl'],
-          isFavorite: prod['isFavorite'],          
-          categoryId: prod['category'],
+          name: title,
+          description: description,
+          price: price,
+          imageUrl: imageUrl,
+          isFavorite: isFavorite,          
+          categoryId: category,
         ));        
       });
       listProducts.clear();

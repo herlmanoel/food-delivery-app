@@ -1,5 +1,6 @@
 import 'package:ecommercefood/src/modules/models/Category.dart';
 import 'package:ecommercefood/src/shared/themes/app_colors.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 class MenuCategories extends StatelessWidget {
@@ -60,12 +61,14 @@ class MenuCategories extends StatelessWidget {
   updateCategorySelected(int id) {
     Category elementCurrent =
         listCategories.firstWhere((element) => element.id == id);
+    Category? elementSelected = 
+        listCategories.firstWhereOrNull((element) => element.selected == true);
 
-    Category elementSelected =
-        listCategories.firstWhere((element) => element.selected == true);
+    if(elementSelected != null) {
+      elementSelected.selected = false;
+    }
 
     elementCurrent.selected = true;
-    elementSelected.selected = false;
 
     sortListCategory();
   }
