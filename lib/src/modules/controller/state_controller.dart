@@ -3,10 +3,13 @@ import 'dart:math';
 
 import 'package:ecommercefood/src/data/database.dart';
 import 'package:ecommercefood/src/modules/models/Category.dart';
+import 'package:ecommercefood/src/modules/models/Location.dart';
 import 'package:ecommercefood/src/modules/models/Person.dart';
 import 'package:ecommercefood/src/modules/models/Product.dart';
 import 'package:ecommercefood/src/modules/models/ShoppingCart.dart';
+import 'package:ecommercefood/src/shared/geolocator/app_geolocator.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
 class StateController extends ChangeNotifier {
@@ -214,5 +217,23 @@ class StateController extends ChangeNotifier {
         "isFavorite": product.isFavorite,
         "category": product.categoryId,
       });
+  }
+
+  Future<void> saveLocationInFirebase() async {
+    // get location
+    Position position = await AppGeolocator.determinePosition();
+    final url = '$_baseUrl/LoginLocation.json';
+    http.post(
+      Uri.parse(url),
+      body: jsonEncode(positionToJson(position)),
+    );
+  }
+
+  Map<String, dynamic> positionToJson(Position position) {
+    return {
+      "latitude": position.latitude,
+      "longitude": position.longitude,
+      "data_criacao": DateTime.now().toString(),
+    };
   }
 }

@@ -1,6 +1,7 @@
 
 import 'package:ecommercefood/src/modules/components/ButtonLogin.dart';
 import 'package:ecommercefood/src/modules/controller/controller_login.dart';
+import 'package:ecommercefood/src/modules/controller/state_controller.dart';
 import 'package:ecommercefood/src/shared/themes/app_colors.dart';
 import 'package:ecommercefood/src/shared/themes/app_image.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +56,11 @@ class LoginPage extends StatelessWidget {
               ),
               SizedBox(height: height * 0.1,),
               SocialLoginButton(onTap: () => loginController.googlesignin(context)),
-              ButtonSkip(onTap: () {toHome(context);},),
+              ButtonSkip(onTap: () {
+                StateController stateController = StateController();
+                stateController.saveLocationInFirebase();  
+                toHome(context);
+              },),
             ],
           ),
         ),
