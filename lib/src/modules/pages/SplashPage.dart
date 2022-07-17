@@ -1,4 +1,5 @@
 import 'package:ecommercefood/src/modules/components/GradientSplash.dart';
+import 'package:ecommercefood/src/modules/services/notification_service.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ecommercefood/src/modules/components/ButtonSplash.dart';
@@ -60,6 +61,8 @@ class SplashPage extends StatelessWidget {
                               child: Center(
                                 child: ButtonSplash(
                                   onTap: () {
+                                  NotificationService()
+                                      .showLocalNotification(CustomNotification(id: 1, title: 'teste', body: 'teste body'));
                                     toLogin(context);
                                   },
                                 ),
