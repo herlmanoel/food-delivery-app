@@ -1,7 +1,8 @@
-import 'package:ecommercefood/src/modules/controller/state_controller.dart';
+
+import 'package:ecommercefood/src/modules/services/firebase_messaging_service.dart';
+import 'package:ecommercefood/src/modules/services/notification_service.dart';
 import 'package:ecommercefood/src/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -9,8 +10,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<StateController>(context);
-    
+    initializeFirebaseMessaging();
     return MaterialApp(
       title: 'E-commerce Food',
       theme: ThemeData(
@@ -19,5 +19,11 @@ class MyApp extends StatelessWidget {
       initialRoute: Routes.SPLASH,
       routes: Routes.routes,
     );
+  }
+
+  initializeFirebaseMessaging() async {
+    FirebaseMessagingService firebaseMessagingService =
+        FirebaseMessagingService(NotificationService());
+    await firebaseMessagingService.initialize();
   }
 }

@@ -1,10 +1,10 @@
-
 import 'package:ecommercefood/src/modules/controller/state_controller.dart';
+import 'package:ecommercefood/src/modules/services/firebase_messaging_service.dart';
+import 'package:ecommercefood/src/modules/services/notification_service.dart';
 import 'package:ecommercefood/src/my_app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 
 class AppFirebase extends StatefulWidget {
   @override
@@ -29,10 +29,7 @@ class _AppFirebaseState extends State<AppFirebase> {
               ),
             );
           } else if (snapshot.connectionState == ConnectionState.done) {
-            return ChangeNotifierProvider(
-              create: (context) => StateController(),
-              child: const MyApp(),
-            );
+            return initializeChangeNotifierProvider();
           } else {
             return const Material(
               child: Center(
@@ -42,4 +39,11 @@ class _AppFirebaseState extends State<AppFirebase> {
           }
         });
   }
+}
+
+Widget initializeChangeNotifierProvider() {
+  return ChangeNotifierProvider(
+    create: (_) => StateController(),
+    child: const MyApp(),
+  );
 }

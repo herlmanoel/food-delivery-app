@@ -8,7 +8,8 @@ class FirebaseMessagingService {
   FirebaseMessagingService(this._notificationService);
 
   Future<void> initialize() async {
-    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
       badge: true,
       sound: true,
       alert: true,
