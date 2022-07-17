@@ -90,8 +90,7 @@ class StateController extends ChangeNotifier {
             categoryId: category,
           ));
         } catch (e) {
-          print('$id $prod');
-          print(e);
+          print('Erro! id: ($id prod: $prod) $e');
         }
       });
       listProducts.clear();
