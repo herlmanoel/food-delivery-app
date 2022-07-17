@@ -12,7 +12,7 @@ class DatabaseProducts {
         icon: Image.asset(AppImages.hotDogIcon),
         selected: true),
     Category(id: 2, title: 'Pizza', icon: Image.asset(AppImages.pizzaIcon)),
-    Category(id: 3, title: 'Burguer', icon: Image.asset(AppImages.burguerIcon)),
+    Category(id: 3, title: 'Burger', icon: Image.asset(AppImages.burguerIcon)),
   ];
 
   static List<Category> getListCategoriesOrderByTitle() {

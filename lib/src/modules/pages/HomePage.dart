@@ -65,7 +65,6 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: paddingSafeArea),
           child: Column(children: [
-            // _component(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

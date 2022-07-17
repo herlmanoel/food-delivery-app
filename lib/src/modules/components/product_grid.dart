@@ -9,19 +9,20 @@ class ProductGrid extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-
-    return GridView.builder(
-      shrinkWrap: true,
-      padding: const EdgeInsets.all(10),
-      itemCount: products.length,
-      itemBuilder: (ctx, i) => ProductItem(
-        product: products[i],
-      ),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2, //2 produtos por linha
-        childAspectRatio: 0.75, //diemnsao de cada elemento
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
+    return Expanded(
+      child: GridView.builder(
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(10),
+        itemCount: products.length,
+        itemBuilder: (ctx, i) => ProductItem(
+          product: products[i],
+        ),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, //2 produtos por linha
+          childAspectRatio: 0.75, //diemnsao de cada elemento
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+        ),
       ),
     );
   }
