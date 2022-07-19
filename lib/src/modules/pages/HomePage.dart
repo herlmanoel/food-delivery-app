@@ -8,8 +8,8 @@ import 'package:ecommercefood/src/modules/components/MenuCategories.dart';
 import 'package:ecommercefood/src/modules/models/Category.dart';
 import 'package:ecommercefood/src/modules/models/Product.dart';
 import 'package:ecommercefood/src/modules/pages/FavoritePage.dart';
+import 'package:ecommercefood/src/modules/pages/UserPage.dart';
 import 'package:ecommercefood/src/shared/themes/app_colors.dart';
-import 'package:ecommercefood/src/shared/themes/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../pages/SettingsPage.dart';
@@ -53,6 +53,12 @@ class _HomePageState extends State<HomePage> {
       MaterialPageRoute(builder: (context) => const FavoritesPage()),
     );
   }
+  void toUser(context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => UserPage()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,9 +76,13 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Row(
                   children: [
-                    Transform.scale(
-                      scale: 0.6,
-                      child: Image.asset(AppImages.delivery),
+                    IconButton(
+                      icon: const Icon(
+                        Icons.account_circle_outlined,
+                        color: Colors.black,
+                        size: 30,
+                      ),
+                      onPressed: () => toUser(context),
                     ),
                     const Text(
                       'Order Your Food\nFast and Free',
